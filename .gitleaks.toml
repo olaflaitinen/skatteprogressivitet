@@ -1,0 +1,29 @@
+title = "Skatteprogressivitet gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "personnummer"
+description = "Swedish personal identity number (personnummer)"
+regex = '''\b(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])[-+]?\d{4}\b'''
+tags = ["PII", "sweden", "personnummer"]
+
+[[rules]]
+id = "organisationsnummer"
+description = "Swedish organisation number"
+regex = '''\b\d{6}[-]\d{4}\b'''
+tags = ["PII", "sweden", "organisationsnummer"]
+
+[[rules]]
+id = "swedish-iban"
+description = "Swedish IBAN"
+regex = '''\bSE\d{2}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\b'''
+tags = ["financial", "IBAN", "sweden"]
+
+[allowlist]
+description = "Allow test/fixture patterns"
+paths = [
+  '''data/synthetic/.*''',
+  '''tests/.*''',
+]
