@@ -1,0 +1,102 @@
+# SFS 2014:1468, SFS 2015:775
+# Prop. 2014/15:1 (Budget 2015)
+# Effective: 2015-01-01
+# Changes from 2007:
+#   jobbskatteavdrag: step 5+ (fully expanded version as of 2014/2015)
+#   statlig_skatt: thresholds updated for 2015 price level
+#   arbetsgivaravgift.reduced_rate_under_26: restored to near-full rate
+#   three_twelve: förenklingsregeln_base raised to 155650 SEK (2.75 * IBB)
+#   inkomstbasbelopp: updated
+year: 2015
+sfs_reference: "SFS 2014:1468"
+prop_reference: "Prop. 2014/15:1"
+effective_date: "2015-01-01"
+notes: >-
+  The Social Democrat / Green government retained and slightly adjusted the
+  jobbskatteavdrag. The youth payroll-tax reduction was phased out. The 3:12
+  förenklingsregeln cap was set as a multiple of inkomstbasbelopp.
+
+kommunal_skatt:
+  rate: 0.3186
+  notes: "National average municipal rate 2015."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 430200
+      rate: 0.0
+    - lower: 430200
+      upper: 625800
+      rate: 0.20
+    - lower: 625800
+      upper: null
+      rate: 0.25
+  notes: "Thresholds 2015; värnskatt still at 5% above upper brytpunkt."
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Unchanged."
+
+arbetsgivaravgift:
+  rate: 0.3142
+  ceiling: null
+  reduced_rate_under_26: 0.3142
+  reduced_rate_over_65: 0.1042
+  notes: >-
+    Youth payroll-tax reduction phased out 2015. Reduced rate for over-65
+    retained.
+
+egenavgift:
+  rate: 0.2871
+  ceiling: null
+  notes: "Self-employed rate 2015."
+
+jobbskatteavdrag:
+  enabled: true
+  schedule:
+    - income_lower: 0
+      income_upper: 40000
+      formula: "kommunal_rate * earned_income"
+      max_credit: null
+    - income_lower: 40000
+      income_upper: 130000
+      formula: "kommunal_rate * (40000 + (earned_income - 40000) * 0.8)"
+      max_credit: null
+    - income_lower: 130000
+      income_upper: 330000
+      formula: "kommunal_rate * (40000 + 90000 * 0.8 + (earned_income - 130000) * 0.15)"
+      max_credit: null
+    - income_lower: 330000
+      income_upper: null
+      formula: "kommunal_rate * 142000"
+      max_credit: null
+  age_65_plus_enhanced: true
+  notes: "Fully expanded jobbskatteavdrag; simplified piecewise approximation."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 155650
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.0995
+  dividend_rate_qualified: 0.20
+  dividend_rate_excess: 0.57
+  notes: >-
+    Förenklingsregeln base approx 2.75 * inkomstbasbelopp. Return rate indexed
+    to government bond yield + margin.
+
+housing_allowance:
+  bostadsbidrag_max: 24000
+  bostadstillagg_max: 12600
+  income_taper_rate: 0.20
+  notes: "Approximate 2015 levels."
+
+transfers:
+  sjukpenning_rate: 0.775
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 2015."
+
+basbelopp: 44500
+prisbasbelopp: 44500
+inkomstbasbelopp: 58100

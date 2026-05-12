@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/olaflaitinen/skatteprogressivitet/data/legislation/schema.json",
+  "title": "Legislation",
+  "description": "Schema for one reform-year legislative-parameter file.",
+  "type": "object",
+  "required": ["year", "kommunal_skatt", "statlig_skatt", "kapitalinkomstskatt",
+               "arbetsgivaravgift", "egenavgift", "jobbskatteavdrag",
+               "basbelopp", "prisbasbelopp", "inkomstbasbelopp"],
+  "additionalProperties": false,
+  "properties": {
+    "year": {
+      "type": "integer",
+      "minimum": 1991,
+      "maximum": 2100
+    },
+    "sfs_reference": {
+      "type": "string"
+    },
+    "prop_reference": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "kommunal_skatt": {
+      "type": "object",
+      "required": ["rate"],
+      "additionalProperties": false,
+      "properties": {
+        "rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "statlig_skatt": {
+      "type": "object",
+      "required": ["brackets"],
+      "additionalProperties": false,
+      "properties": {
+        "brackets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["lower", "rate"],
+            "additionalProperties": false,
+            "properties": {
+              "lower": {"type": "number", "minimum": 0},
+              "upper": {"type": ["number", "null"]},
+              "rate": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "kapitalinkomstskatt": {
+      "type": "object",
+      "required": ["standard_rate"],
+      "additionalProperties": false,
+      "properties": {
+        "standard_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "dividend_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "arbetsgivaravgift": {
+      "type": "object",
+      "required": ["rate"],
+      "additionalProperties": false,
+      "properties": {
+        "rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "ceiling": {"type": ["number", "null"]},
+        "reduced_rate_under_26": {"type": "number", "minimum": 0, "maximum": 1},
+        "reduced_rate_over_65": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "egenavgift": {
+      "type": "object",
+      "required": ["rate"],
+      "additionalProperties": false,
+      "properties": {
+        "rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "ceiling": {"type": ["number", "null"]},
+        "notes": {"type": "string"}
+      }
+    },
+    "jobbskatteavdrag": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["income_lower", "formula"],
+            "additionalProperties": false,
+            "properties": {
+              "income_lower": {"type": "number", "minimum": 0},
+              "income_upper": {"type": ["number", "null"]},
+              "formula": {"type": "string"},
+              "max_credit": {"type": ["number", "null"]}
+            }
+          }
+        },
+        "age_65_plus_enhanced": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    },
+    "three_twelve": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "forenklingsregeln_base": {"type": "number", "minimum": 0},
+        "forenklingsregeln_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "huvudregeln_return_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "dividend_rate_qualified": {"type": "number", "minimum": 0, "maximum": 1},
+        "dividend_rate_excess": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "housing_allowance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bostadsbidrag_max": {"type": "number", "minimum": 0},
+        "bostadstillagg_max": {"type": "number", "minimum": 0},
+        "income_taper_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "transfers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sjukpenning_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "foraldrapenning_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "a_kassa_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "a_kassa_ceiling_ibb_fraction": {"type": "number", "minimum": 0},
+        "notes": {"type": "string"}
+      }
+    },
+    "basbelopp": {
+      "type": "number",
+      "minimum": 0
+    },
+    "prisbasbelopp": {
+      "type": "number",
+      "minimum": 0
+    },
+    "inkomstbasbelopp": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

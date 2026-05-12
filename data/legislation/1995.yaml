@@ -1,0 +1,72 @@
+# SFS 1994:1744, SFS 1995:575
+# Prop. 1994/95:150 - Budget consolidation package
+# Effective: 1995-01-01
+# Changes from 1991:
+#   statlig_skatt: upper bracket rate raised from 0.20 to 0.25
+#   arbetsgivaravgift.rate: adjusted to 0.3295 (minor composition change)
+#   basbelopp/prisbasbelopp: updated to 1995 values
+year: 1995
+sfs_reference: "SFS 1994:1744"
+prop_reference: "Prop. 1994/95:150"
+effective_date: "1995-01-01"
+notes: >-
+  Budget consolidation added a second state income tax bracket. The 25% marginal
+  rate above the brytpunkt represented a tightening after the 1991 reform.
+
+kommunal_skatt:
+  rate: 0.3165
+  notes: "National average municipal rate 1995."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 209700
+      rate: 0.0
+    - lower: 209700
+      upper: null
+      rate: 0.25
+  notes: "Brytpunkt raised; marginal rate increased to 25%."
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Unchanged from 1991."
+
+arbetsgivaravgift:
+  rate: 0.3295
+  ceiling: null
+  notes: "Employer contribution rate 1995."
+
+egenavgift:
+  rate: 0.2546
+  ceiling: null
+  notes: "Self-employed rate 1995."
+
+jobbskatteavdrag:
+  enabled: false
+  notes: "Not yet introduced."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 0
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.07
+  dividend_rate_qualified: 0.30
+  dividend_rate_excess: 0.50
+  notes: "3:12 rules 1995; förenklingsregeln not yet operative."
+
+housing_allowance:
+  bostadsbidrag_max: 22800
+  bostadstillagg_max: 11400
+  income_taper_rate: 0.20
+  notes: "Approximate 1995 levels."
+
+transfers:
+  sjukpenning_rate: 0.80
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates reduced in 1993 consolidation; still 80% in 1995."
+
+basbelopp: 35700
+prisbasbelopp: 35700
+inkomstbasbelopp: 35700

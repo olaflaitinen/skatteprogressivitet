@@ -1,0 +1,98 @@
+# SFS 2006:1340, SFS 2007:346
+# Prop. 2006/07:1 (Budget 2007) - Jobbskatteavdrag step 1
+# Prop. 2006/07:100 - Spring fiscal policy bill
+# Effective: 2007-01-01
+# Changes from 2000:
+#   jobbskatteavdrag: enabled = true (step 1 of 4)
+#   statlig_skatt: thresholds updated for 2007 price level
+#   arbetsgivaravgift.rate: minor adjustment
+#   inkomstbasbelopp: updated
+year: 2007
+sfs_reference: "SFS 2006:1340"
+prop_reference: "Prop. 2006/07:1"
+effective_date: "2007-01-01"
+notes: >-
+  The Alliansen government introduced the jobbskatteavdrag (earned-income tax
+  credit) in step 1 of 4 incremental expansions. The credit substantially reduced
+  the marginal and average tax burden for low- and middle-income earners, reshaping
+  effective progressivity. The value of the credit depends on the kommunal tax rate
+  and earned income relative to prisbasbelopp.
+
+kommunal_skatt:
+  rate: 0.3148
+  notes: "National average municipal rate 2007."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 328800
+      rate: 0.0
+    - lower: 328800
+      upper: 493500
+      rate: 0.20
+    - lower: 493500
+      upper: null
+      rate: 0.25
+  notes: "Thresholds updated; värnskatt still applies above upper brytpunkt."
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Unchanged."
+
+arbetsgivaravgift:
+  rate: 0.3242
+  ceiling: null
+  reduced_rate_under_26: 0.2142
+  notes: "Reduced rate for workers under 26 introduced 2007."
+
+egenavgift:
+  rate: 0.2871
+  ceiling: null
+  notes: "Self-employed rate 2007."
+
+jobbskatteavdrag:
+  enabled: true
+  schedule:
+    - income_lower: 0
+      income_upper: 100000
+      formula: "kommunal_rate * earned_income * 0.17"
+      max_credit: null
+    - income_lower: 100000
+      income_upper: 300000
+      formula: "kommunal_rate * (earned_income - 100000) * 0.03 + kommunal_rate * 100000 * 0.17"
+      max_credit: null
+    - income_lower: 300000
+      income_upper: null
+      formula: "kommunal_rate * 22000"
+      max_credit: null
+  age_65_plus_enhanced: false
+  notes: "Step 1 schedule; simplified piecewise approximation for ledger."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 150000
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.0973
+  dividend_rate_qualified: 0.20
+  dividend_rate_excess: 0.57
+  notes: >-
+    Major 3:12 reform 2006 (Prop. 2005/06:40): dividend rate on qualified income
+    lowered from 30% to 20%; excess income taxed as labour at 57% effective rate.
+    Förenklingsregeln cap raised.
+
+housing_allowance:
+  bostadsbidrag_max: 24000
+  bostadstillagg_max: 12000
+  income_taper_rate: 0.20
+  notes: "Approximate 2007 levels."
+
+transfers:
+  sjukpenning_rate: 0.80
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 2007."
+
+basbelopp: 41000
+prisbasbelopp: 41000
+inkomstbasbelopp: 46200

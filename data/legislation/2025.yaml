@@ -1,0 +1,98 @@
+# SFS 2024:875, SFS 2024:876
+# Prop. 2024/25:1 (Budget 2025)
+# Effective: 2025-01-01
+# Changes from 2020:
+#   statlig_skatt: brytpunkt raised; threshold updated for 2025 price level
+#   jobbskatteavdrag: further expansion; additional credit for low earners
+#   arbetsgivaravgift.reduced_rate_under_26: maintained
+#   three_twelve: förenklingsregeln_base updated to 2025 IBB multiple
+#   basbelopp/prisbasbelopp/inkomstbasbelopp: 2025 values
+year: 2025
+sfs_reference: "SFS 2024:875"
+prop_reference: "Prop. 2024/25:1"
+effective_date: "2025-01-01"
+notes: >-
+  The Tidö government budget 2025 raised the jobbskatteavdrag for low-income
+  earners and updated the statlig inkomstskatt brytpunkt in line with wage
+  indexation. The 3:12 förenklingsregeln base is indexed to inkomstbasbelopp.
+
+kommunal_skatt:
+  rate: 0.3240
+  notes: "National average municipal rate 2025 (approximate)."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 598500
+      rate: 0.0
+    - lower: 598500
+      upper: null
+      rate: 0.20
+  notes: "Brytpunkt 2025; single 20% state bracket above threshold."
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  dividend_rate: 0.30
+  notes: "Unchanged."
+
+arbetsgivaravgift:
+  rate: 0.3142
+  ceiling: null
+  reduced_rate_under_26: 0.1957
+  reduced_rate_over_65: 0.1042
+  notes: "Rates unchanged from 2020 in this ledger."
+
+egenavgift:
+  rate: 0.2871
+  ceiling: null
+  notes: "Self-employed rate 2025."
+
+jobbskatteavdrag:
+  enabled: true
+  schedule:
+    - income_lower: 0
+      income_upper: 50000
+      formula: "kommunal_rate * earned_income * 1.10"
+      max_credit: null
+    - income_lower: 50000
+      income_upper: 140000
+      formula: "kommunal_rate * (50000 * 1.10 + (earned_income - 50000) * 0.8)"
+      max_credit: null
+    - income_lower: 140000
+      income_upper: 340000
+      formula: "kommunal_rate * (50000 * 1.10 + 90000 * 0.8 + (earned_income - 140000) * 0.15)"
+      max_credit: null
+    - income_lower: 340000
+      income_upper: null
+      formula: "kommunal_rate * 155000"
+      max_credit: null
+  age_65_plus_enhanced: true
+  notes: "2025 schedule with enhanced lower-income component."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 204325
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.1030
+  dividend_rate_qualified: 0.20
+  dividend_rate_excess: 0.57
+  notes: >-
+    Förenklingsregeln base 2025 = 2.75 * inkomstbasbelopp (IBB 74300). Return
+    rate based on government bond yield + regulatory margin.
+
+housing_allowance:
+  bostadsbidrag_max: 28800
+  bostadstillagg_max: 14400
+  income_taper_rate: 0.20
+  notes: "Approximate 2025 levels."
+
+transfers:
+  sjukpenning_rate: 0.775
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 2025."
+
+basbelopp: 52500
+prisbasbelopp: 52500
+inkomstbasbelopp: 74300

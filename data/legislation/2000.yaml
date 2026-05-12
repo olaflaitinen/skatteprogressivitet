@@ -1,0 +1,78 @@
+# SFS 1999:1230 (Inkomstskattelagen)
+# Prop. 1999/2000:2 - New Income Tax Act (IL)
+# Effective: 2000-01-01 (IL in force; replaces KL/SIL)
+# Changes from 1995:
+#   statlig_skatt: two-bracket structure retained; thresholds updated
+#   värnskatt introduced at 5% above the upper brytpunkt
+#   basbelopp/prisbasbelopp/inkomstbasbelopp: 2000 values
+year: 2000
+sfs_reference: "SFS 1999:1230"
+prop_reference: "Prop. 1999/2000:2"
+effective_date: "2000-01-01"
+notes: >-
+  Inkomstskattelagen (IL) replaced the old Kommunalskattelagen and Statlig
+  inkomstskattelag. The värnskatt (a 5% surtax) was introduced on top incomes
+  above a second brytpunkt. Separate inkomstbasbelopp introduced.
+
+kommunal_skatt:
+  rate: 0.3057
+  notes: "National average municipal rate 2000."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 252000
+      rate: 0.0
+    - lower: 252000
+      upper: 374000
+      rate: 0.20
+    - lower: 374000
+      upper: null
+      rate: 0.25
+  notes: >-
+    Two state-tax brackets; värnskatt adds 5% above the upper threshold giving
+    an effective 30% state rate at the top. Encoded here as separate bracket.
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Unchanged."
+
+arbetsgivaravgift:
+  rate: 0.3295
+  ceiling: null
+  notes: "Employer contribution rate 2000."
+
+egenavgift:
+  rate: 0.2846
+  ceiling: null
+  notes: "Self-employed rate 2000."
+
+jobbskatteavdrag:
+  enabled: false
+  notes: "Not yet introduced."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 100000
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.09
+  dividend_rate_qualified: 0.30
+  dividend_rate_excess: 0.50
+  notes: "Förenklingsregeln cap introduced around this period; approximate values."
+
+housing_allowance:
+  bostadsbidrag_max: 22800
+  bostadstillagg_max: 11400
+  income_taper_rate: 0.20
+  notes: "Approximate 2000 levels."
+
+transfers:
+  sjukpenning_rate: 0.80
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 2000."
+
+basbelopp: 36900
+prisbasbelopp: 36900
+inkomstbasbelopp: 38800

@@ -1,0 +1,69 @@
+# SFS 1990:651 (Lag om reformerad inkomstbeskattning)
+# Prop. 1989/90:110 - The 1991 tax reform
+# Effective: 1991-01-01
+year: 1991
+sfs_reference: "SFS 1990:651"
+prop_reference: "Prop. 1989/90:110"
+effective_date: "1991-01-01"
+notes: >-
+  The landmark 1991 tax reform (den stora skattereformen) introduced a dual income
+  tax system separating labour income (progressive) from capital income (flat 30%).
+  Municipal tax became proportional; state income tax bracket structure simplified.
+
+kommunal_skatt:
+  rate: 0.31
+  notes: "National average municipal rate 1991; actual rate varies by municipality."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 170000
+      rate: 0.0
+    - lower: 170000
+      upper: null
+      rate: 0.20
+  notes: "Brytpunkt at 170 000 SEK. Single bracket above threshold at 20%."
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Flat 30% on net capital income introduced by the 1991 reform."
+
+arbetsgivaravgift:
+  rate: 0.3295
+  ceiling: null
+  notes: "Full employer social contribution rate 1991."
+
+egenavgift:
+  rate: 0.2546
+  ceiling: null
+  notes: "Self-employed social contribution rate 1991."
+
+jobbskatteavdrag:
+  enabled: false
+  notes: "Jobbskatteavdrag not yet introduced; introduced in 2007."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 0
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.07
+  dividend_rate_qualified: 0.30
+  dividend_rate_excess: 0.50
+  notes: "Early 3:12 rules; förenklingsregeln introduced later."
+
+housing_allowance:
+  bostadsbidrag_max: 24000
+  bostadstillagg_max: 12000
+  income_taper_rate: 0.20
+  notes: "Approximate 1991 levels in SEK per year."
+
+transfers:
+  sjukpenning_rate: 0.90
+  foraldrapenning_rate: 0.90
+  a_kassa_rate: 0.90
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 1991."
+
+basbelopp: 32200
+prisbasbelopp: 32200
+inkomstbasbelopp: 32200

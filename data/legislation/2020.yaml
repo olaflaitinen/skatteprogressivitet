@@ -1,0 +1,98 @@
+# SFS 2019:835, SFS 2020:1068
+# Prop. 2019/20:1 (Budget 2020), Prop. 2020/21:1 (Budget 2021)
+# Effective: 2020-01-01
+# Changes from 2015:
+#   statlig_skatt: värnskatt (25% bracket) abolished from 2020; single 20% bracket above lower brytpunkt
+#   arbetsgivaravgift.reduced_rate_under_26: re-introduced at reduced level 2019
+#   jobbskatteavdrag: minor upward adjustment
+#   three_twelve: förenklingsregeln_base updated
+#   inkomstbasbelopp: updated
+year: 2020
+sfs_reference: "SFS 2019:835"
+prop_reference: "Prop. 2019/20:1"
+effective_date: "2020-01-01"
+notes: >-
+  The Januariavtalet (January Agreement 2019) reform package abolished the
+  värnskatt (the 5% top surtax above the upper brytpunkt) effective from 2020.
+  This reduced the top marginal state income tax rate from 25% to 20%.
+  The youth payroll-tax reduction was re-introduced in 2019 at a lower rate.
+
+kommunal_skatt:
+  rate: 0.3215
+  notes: "National average municipal rate 2020."
+
+statlig_skatt:
+  brackets:
+    - lower: 0
+      upper: 509300
+      rate: 0.0
+    - lower: 509300
+      upper: null
+      rate: 0.20
+  notes: >-
+    Värnskatt abolished; single state tax bracket above lower brytpunkt at 20%.
+    Upper brytpunkt removed. Significant reduction in top marginal rate.
+
+kapitalinkomstskatt:
+  standard_rate: 0.30
+  notes: "Unchanged."
+
+arbetsgivaravgift:
+  rate: 0.3142
+  ceiling: null
+  reduced_rate_under_26: 0.1957
+  reduced_rate_over_65: 0.1042
+  notes: "Youth payroll-tax reduction re-introduced 2019 at partial level."
+
+egenavgift:
+  rate: 0.2871
+  ceiling: null
+  notes: "Self-employed rate 2020."
+
+jobbskatteavdrag:
+  enabled: true
+  schedule:
+    - income_lower: 0
+      income_upper: 40000
+      formula: "kommunal_rate * earned_income"
+      max_credit: null
+    - income_lower: 40000
+      income_upper: 130000
+      formula: "kommunal_rate * (40000 + (earned_income - 40000) * 0.8)"
+      max_credit: null
+    - income_lower: 130000
+      income_upper: 330000
+      formula: "kommunal_rate * (40000 + 90000 * 0.8 + (earned_income - 130000) * 0.15)"
+      max_credit: null
+    - income_lower: 330000
+      income_upper: null
+      formula: "kommunal_rate * 147000"
+      max_credit: null
+  age_65_plus_enhanced: true
+  notes: "Minor upward adjustment from 2015."
+
+three_twelve:
+  enabled: true
+  forenklingsregeln_base: 177100
+  forenklingsregeln_rate: 0.0
+  huvudregeln_return_rate: 0.0857
+  dividend_rate_qualified: 0.20
+  dividend_rate_excess: 0.57
+  notes: "Förenklingsregeln base 2020 (approx 2.75 * IBB 64400)."
+
+housing_allowance:
+  bostadsbidrag_max: 26400
+  bostadstillagg_max: 13200
+  income_taper_rate: 0.20
+  notes: "Approximate 2020 levels."
+
+transfers:
+  sjukpenning_rate: 0.775
+  foraldrapenning_rate: 0.80
+  a_kassa_rate: 0.80
+  a_kassa_ceiling_ibb_fraction: 0.775
+  notes: "Replacement rates 2020."
+
+basbelopp: 47300
+prisbasbelopp: 47300
+inkomstbasbelopp: 66800
