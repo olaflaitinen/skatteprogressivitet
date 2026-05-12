@@ -1,0 +1,54 @@
+coverage:
+  precision: 2
+  round: down
+  range: "90...100"
+  status:
+    project:
+      default:
+        target: 90%
+        threshold: 1%
+    patch:
+      default:
+        target: 80%
+        threshold: 5%
+
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: 90%
+  individual_components:
+    - component_id: rules
+      name: Tax Rules
+      paths:
+        - src/skatteprogressivitet/rules/**
+    - component_id: simulator
+      name: Simulator
+      paths:
+        - src/skatteprogressivitet/simulator/**
+    - component_id: progressivity
+      name: Progressivity Indices
+      paths:
+        - src/skatteprogressivitet/progressivity/**
+    - component_id: behavioural
+      name: Behavioural Models
+      paths:
+        - src/skatteprogressivitet/behavioural/**
+    - component_id: legislation
+      name: Legislation Loader
+      paths:
+        - src/skatteprogressivitet/legislation/**
+    - component_id: causal
+      name: Causal Inference
+      paths:
+        - src/skatteprogressivitet/causal/**
+
+comment:
+  layout: "reach,diff,flags,components"
+  behavior: default
+  require_changes: false
+
+ignore:
+  - "src/skatteprogressivitet/_version.py"
+  - "tests/**"
+  - "benchmarks/**"
