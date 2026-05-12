@@ -1,0 +1,17 @@
+scenario_id: "broaden-capital-base"
+description: >-
+  Counterfactual: raise the standard capital income tax rate from 30 to 35 percent.
+  Models a broadening of the capital income tax base consistent with a partial
+  move toward a comprehensive income tax.
+baseline_year: 2025
+behavioural: "full"
+overrides:
+  - path: "kapitalinkomstskatt.standard_rate"
+    value: 0.35
+    notes: "Raises capital income tax rate from 0.30 to 0.35."
+  - path: "kapitalinkomstskatt.dividend_rate"
+    value: 0.35
+    notes: "Raises dividend tax rate to match standard rate."
+notes: >-
+  Hypothetical reform. Models the low end of the Dahlberg-Sjoblom (2022)
+  capital tax reform proposals.

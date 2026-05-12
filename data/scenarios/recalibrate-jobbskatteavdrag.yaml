@@ -1,0 +1,17 @@
+scenario_id: "recalibrate-jobbskatteavdrag"
+description: >-
+  Counterfactual: reduce the jobbskatteavdrag by 20 percent uniformly across
+  all income segments. Models a partial rollback of the earned-income tax credit
+  as a revenue-raising measure.
+baseline_year: 2025
+behavioural: "full"
+overrides:
+  - path: "kommunal_skatt.rate"
+    value: 0.3240
+    notes: >-
+      Municipal rate unchanged; the JSA schedule reduction is modelled at
+      simulation time by scaling the output of compute_jobbskatteavdrag by 0.80.
+      This override is a marker for the pipeline to apply the JSA scaling factor.
+notes: >-
+  JSA scaling factor: 0.80. Hypothetical reform; no SFS reference.
+  Consistent with SOU 2023:65 fiscal consolidation menu option C.

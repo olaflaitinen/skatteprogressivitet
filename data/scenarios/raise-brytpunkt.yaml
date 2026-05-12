@@ -1,0 +1,14 @@
+scenario_id: "raise-brytpunkt"
+description: >-
+  Counterfactual: raise the statlig inkomstskatt lower britpunkt by 10 percent
+  relative to the 2025 baseline. Models the effect of indexing the threshold
+  to nominal wage growth rather than price growth.
+baseline_year: 2025
+behavioural: "full"
+overrides:
+  - path: "statlig_skatt.brackets.1.lower"
+    value: 658350.0
+    notes: "110 percent of the 2025 britpunkt (598500 * 1.10 = 658350)."
+notes: >-
+  Prop. reference: hypothetical; models Riksdagen motion 2024/25:Sk123.
+  Revenue effect is negative (static); partially offset by behavioural response.

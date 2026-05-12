@@ -1,0 +1,22 @@
+scenario_id: "comprehensive-income"
+description: >-
+  Counterfactual: full comprehensive income tax. Capital income is taxed at the
+  same rate as labour income by raising the kapitalinkomstskatt rate to the
+  kommunal_skatt rate (national average 0.324). Models the distributional
+  effect of abolishing the dual income tax structure introduced in 1991.
+baseline_year: 2025
+behavioural: "full"
+overrides:
+  - path: "kapitalinkomstskatt.standard_rate"
+    value: 0.324
+    notes: >-
+      Set capital income rate to national average kommunal rate (0.3240),
+      approximating a comprehensive income tax. Does not change the kommunal
+      or statlig schedules.
+  - path: "kapitalinkomstskatt.dividend_rate"
+    value: 0.324
+    notes: "Dividend rate equalised to standard rate."
+notes: >-
+  Extreme-reform scenario. Based on the pre-1991 income tax regime analysis in
+  Agell, Englund and Sodersten (1996).
+  Note: 3:12 rules are not modified; this is a partial reform.
