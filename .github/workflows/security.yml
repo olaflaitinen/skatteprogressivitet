@@ -1,0 +1,63 @@
+name: Security
+
+on:
+  schedule:
+    - cron: "30 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    name: CodeQL analysis
+    runs-on: ubuntu-22.04
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@b56ba49b26e50535fa1e7f7db0f4f2cfbf8e5c31  # v3.28.10
+        with:
+          languages: python
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@b56ba49b26e50535fa1e7f7db0f4f2cfbf8e5c31
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@b56ba49b26e50535fa1e7f7db0f4f2cfbf8e5c31
+
+  scorecard:
+    name: OpenSSF Scorecard
+    runs-on: ubuntu-22.04
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Run Scorecard
+        uses: ossf/scorecard-action@62b2cac7ed8198b15735ed49ab1e5cf35480ba46  # v2.4.0
+        with:
+          results_file: scorecard-results.sarif
+          results_format: sarif
+          publish_results: true
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f2cfbf8e5c31
+        with:
+          sarif_file: scorecard-results.sarif
+
+  osv-scan:
+    name: OSV vulnerability scan
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Run OSV-Scanner
+        uses: google/osv-scanner-action/osv-scanner-action@8a68af03efcfbe2cdd4e47f1aa7a39793c7b94eb  # v1.9.1
+        with:
+          scan-args: |-
+            --lockfile=uv.lock

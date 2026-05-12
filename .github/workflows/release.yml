@@ -1,0 +1,98 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5
+        with:
+          python-version: "3.12"
+      - name: Build
+        run: uv build
+      - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fef5eb30d5f5f2a1b6f5
+        with:
+          name: dist
+          path: dist/
+
+  sbom:
+    name: Generate SBOM
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5
+        with:
+          python-version: "3.12"
+      - name: Install dev dependencies
+        run: uv sync --extra dev
+      - name: Generate CycloneDX SBOM
+        run: uv run cyclonedx-py environment -o sbom.cdx.json --format json
+      - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fef5eb30d5f5f2a1b6f5
+        with:
+          name: sbom
+          path: sbom.cdx.json
+
+  sign:
+    name: Sign with Sigstore
+    runs-on: ubuntu-22.04
+    needs: build
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@fa0a91b85d4f404e444306234b64559e6fbe0b1f
+        with:
+          name: dist
+          path: dist/
+      - name: Sign with sigstore
+        uses: sigstore/gh-action-sigstore-python@f514d46b907ebcd5bedc05145c03b69c1edd8b46  # v3.0.0
+        with:
+          inputs: dist/*.whl dist/*.tar.gz
+
+  publish-pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-22.04
+    needs: [build, sign]
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@fa0a91b85d4f404e444306234b64559e6fbe0b1f
+        with:
+          name: dist
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@76f52bc884231f62f5536d3f4d6d93a3148012ca  # v1.12.4
+
+  github-release:
+    name: Create GitHub release
+    runs-on: ubuntu-22.04
+    needs: [publish-pypi, sbom]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/download-artifact@fa0a91b85d4f404e444306234b64559e6fbe0b1f
+        with:
+          name: dist
+          path: dist/
+      - uses: actions/download-artifact@fa0a91b85d4f404e444306234b64559e6fbe0b1f
+        with:
+          name: sbom
+      - name: Create release
+        uses: softprops/action-gh-release@c95fe1489396fe97e5a4b4adba4bc44e4e2a9813  # v2.2.1
+        with:
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/*.sigstore.json
+            sbom.cdx.json
+          generate_release_notes: true
