@@ -1,0 +1,3 @@
+# `skatteprogressivitet.paths`
+
+::: skatteprogressivitet.paths

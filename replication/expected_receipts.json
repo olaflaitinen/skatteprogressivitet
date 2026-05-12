@@ -1,0 +1,18 @@
+{
+  "_comment": "SHA-256 checksums of key output files. Generated on reference platform (Linux x86-64, Python 3.12.x). Update after any change to legislation YAML, rules, or seeds.",
+  "_generated": "2025-10-08",
+  "_platform": "Linux x86-64",
+  "_python": "3.12",
+  "_seeds": {
+    "SYNTHETIC_SEED": 19960307,
+    "MODEL_SEED": 20251008,
+    "BOOTSTRAP_SEED": 7
+  },
+  "receipts": {
+    "data/synthetic/lisa_like.parquet": "PLACEHOLDER_SHA256_LISA",
+    "data/synthetic/tax_register_like.parquet": "PLACEHOLDER_SHA256_TAX",
+    "reports/sim_2025_static.parquet": "PLACEHOLDER_SHA256_SIM_STATIC",
+    "reports/sim_2025_behavioural.parquet": "PLACEHOLDER_SHA256_SIM_BEH"
+  },
+  "_note": "PLACEHOLDER values must be replaced with actual SHA-256 checksums after the first reference run using uv run python scripts/generate_synthetic_data.py."
+}

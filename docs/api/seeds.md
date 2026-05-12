@@ -1,0 +1,3 @@
+# `skatteprogressivitet.seeds`
+
+::: skatteprogressivitet.seeds

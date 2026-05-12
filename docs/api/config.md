@@ -1,0 +1,3 @@
+# `skatteprogressivitet.config`
+
+::: skatteprogressivitet.config
