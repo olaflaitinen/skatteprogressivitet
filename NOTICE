@@ -1,0 +1,27 @@
+Skatteprogressivitet
+====================
+
+Copyright 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov
+ORCID: https://orcid.org/0009-0006-5184-0810
+
+Maintainer: Dr. Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov, MD, RA, PhD
+Affiliation: Department of Economics, Stockholm University, SE-106 91 Stockholm, Sweden
+ROR: https://ror.org/05f0yaq80
+Email (institutional): olaf.laitinen@su.se
+Email (personal mirror): olaf.laitinen@gmail.com
+
+This repository is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2).
+See LICENSE and LICENSES/EUPL-1.2.txt for the full licence text.
+
+This repository contains NO personal data, NO real microdata, and NO real tax returns.
+Synthetic fixtures are generated from a deterministic seed and distributed under CC0-1.0.
+Legislative-parameter data are curated annotations of public statutes (SFS) and are
+distributed under EUPL-1.2.
+
+Third-party dependencies are listed in pyproject.toml and uv.lock. Each dependency
+is subject to its own licence; all are EUPL-1.2 compatible as documented in
+docs/eu-compliance.md.
+
+This software was developed as part of a twenty-project research portfolio on income,
+wealth, taxation, inequality, and intergenerational mobility in Sweden, commissioned
+by the Department of Economics at Stockholm University.

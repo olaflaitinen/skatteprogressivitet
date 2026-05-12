@@ -1,0 +1,62 @@
+{
+  "upload_type": "software",
+  "title": "Skatteprogressivitet: behavioural microsimulator of Swedish tax progressivity",
+  "description": "Skatteprogressivitet is a static and behavioural microsimulator for the Swedish tax-and-transfer system. It computes effective marginal and average tax rates across the income distribution, decomposes progressivity through the Kakwani, Suits, and residual-progression indices with bootstrap and influence-function standard errors, and evaluates policy counterfactuals. Behavioural responses are modelled through an elasticity-of-taxable-income (ETI) module calibrated against quasi-experimental estimates from the Swedish reform literature.",
+  "version": "0.1.0",
+  "license": "EUPL-1.2",
+  "access_right": "open",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Laitinen-Fredriksson Lundström Imanov, Gustav Olaf Yunus",
+      "affiliation": "Department of Economics, Stockholm University",
+      "orcid": "0009-0006-5184-0810"
+    }
+  ],
+  "keywords": [
+    "tax progressivity",
+    "microsimulation",
+    "Sweden",
+    "ETI",
+    "jobbskatteavdrag",
+    "3:12",
+    "EUPL-1.2",
+    "OSOR",
+    "FAIR4RS",
+    "Kakwani",
+    "Suits",
+    "behavioural economics",
+    "causal inference",
+    "income inequality",
+    "Swedish economy",
+    "tax policy",
+    "open government"
+  ],
+  "communities": [
+    {"identifier": "zenodo"},
+    {"identifier": "eu-open-research"}
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/olaflaitinen/inkomstprognos",
+      "relation": "isPartOf",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/olaflaitinen/formogenhetsanalys",
+      "relation": "isPartOf",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/olaflaitinen/arvsdynamik",
+      "relation": "isPartOf",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/olaflaitinen/mobilitetsmodellen",
+      "relation": "isPartOf",
+      "scheme": "url"
+    }
+  ],
+  "notes": "This software contains no personal data and no real microdata. Synthetic fixtures are generated from a deterministic seed. This work was supported by the Department of Economics, Stockholm University."
+}

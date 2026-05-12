@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "Skatteprogressivitet: behavioural microsimulator of Swedish tax progressivity"
+version: 0.1.0
+date-released: "2026-05-12"
+abstract: >-
+  Skatteprogressivitet is a static and behavioural microsimulator for the Swedish
+  tax-and-transfer system. It computes effective marginal and average tax rates across
+  the income distribution, decomposes progressivity through the Kakwani, Suits, and
+  residual-progression indices with bootstrap and influence-function standard errors,
+  and evaluates policy counterfactuals including broadening the capital-income base,
+  restoring comprehensive income taxation, adjusting the brytpunkt, and recalibrating
+  the jobbskatteavdrag. Behavioural responses are modelled through an elasticity-of-
+  taxable-income (ETI) module calibrated against quasi-experimental estimates from the
+  Swedish reform literature.
+license: EUPL-1.2
+repository-code: "https://github.com/olaflaitinen/skatteprogressivitet"
+url: "https://olaflaitinen.github.io/skatteprogressivitet"
+doi: ""
+keywords:
+  - tax progressivity
+  - microsimulation
+  - Sweden
+  - ETI
+  - jobbskatteavdrag
+  - 3:12
+  - EUPL-1.2
+  - OSOR
+  - FAIR4RS
+  - Kakwani
+  - Suits
+  - behavioural economics
+  - causal inference
+  - income inequality
+  - Swedish economy
+authors:
+  - family-names: "Laitinen-Fredriksson Lundström Imanov"
+    given-names: "Gustav Olaf Yunus"
+    name-suffix: "MD, RA, PhD"
+    email: "olaf.laitinen@su.se"
+    affiliation: "Department of Economics, Stockholm University"
+    orcid: "https://orcid.org/0009-0006-5184-0810"
+identifiers:
+  - type: url
+    value: "https://github.com/olaflaitinen/skatteprogressivitet"
+    description: "GitHub repository"
+references:
+  - type: software
+    title: "Inkomstprognos"
+    authors:
+      - family-names: "Laitinen-Fredriksson Lundström Imanov"
+        given-names: "Gustav Olaf Yunus"
+    url: "https://github.com/olaflaitinen/inkomstprognos"
+  - type: software
+    title: "Förmögenhetsanalys"
+    authors:
+      - family-names: "Laitinen-Fredriksson Lundström Imanov"
+        given-names: "Gustav Olaf Yunus"
+    url: "https://github.com/olaflaitinen/formogenhetsanalys"
