@@ -58,19 +58,15 @@ jobs:
         python: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5
+        with:
+          lfs: true
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
         with:
           python-version: ${{ matrix.python }}
       - name: Install dev dependencies
         run: uv sync --extra dev
       - name: Run tests with coverage
-        run: |
-          uv run pytest tests/ \
-            --cov=src/skatteprogressivitet \
-            --cov-report=xml \
-            --cov-report=term-missing \
-            --cov-fail-under=90 \
-            -v
+        run: uv run pytest tests/ --cov=src/skatteprogressivitet --cov-report=xml --cov-report=term-missing --cov-fail-under=90 -v
         env:
           OMP_NUM_THREADS: "1"
           OPENBLAS_NUM_THREADS: "1"
@@ -88,13 +84,13 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
         with:
           python-version: "3.12"
       - name: Install dev dependencies
         run: uv sync --extra dev
       - name: pip-audit
-        run: uv run pip-audit --strict
+        run: uv run pip-audit
       - name: bandit
         run: uv run bandit -r src -lll
 

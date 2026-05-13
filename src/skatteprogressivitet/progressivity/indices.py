@@ -6,6 +6,8 @@ indices over arrays of pre-tax income and tax liability.
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
 
 
@@ -133,7 +135,8 @@ def suits(pre_tax_income: np.ndarray, tax: np.ndarray) -> float:
     cum_tax_share = cum_tax / total_tax
 
     # Area under the Lorenz-type curve (trapezoid rule)
-    area = float(np.trapz(cum_tax_share, cum_income))  # type: ignore[attr-defined]
+    _trapz: Any = getattr(np, "trapezoid", getattr(np, "trapz", None))
+    area = float(_trapz(cum_tax_share, cum_income))
     return float(1.0 - 2.0 * area)
 
 
