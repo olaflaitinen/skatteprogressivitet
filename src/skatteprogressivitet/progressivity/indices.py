@@ -133,7 +133,7 @@ def suits(pre_tax_income: np.ndarray, tax: np.ndarray) -> float:
     cum_tax_share = cum_tax / total_tax
 
     # Area under the Lorenz-type curve (trapezoid rule)
-    area = float(np.trapz(cum_tax_share, cum_income))
+    area = float(np.trapz(cum_tax_share, cum_income))  # type: ignore[attr-defined]
     return float(1.0 - 2.0 * area)
 
 

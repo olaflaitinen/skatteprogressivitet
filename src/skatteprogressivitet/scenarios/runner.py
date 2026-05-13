@@ -97,7 +97,7 @@ def run_scenario(
         >>> result.baseline.n_taxpayers == 1
         True
     """
-    _config = config or Config(baseline_year=scenario.baseline_year)  # type: ignore[call-arg]
+    _config = config or Config(baseline_year=scenario.baseline_year)  # type: ignore[arg-type]
     ledger = LegislationLedger()
     sim = Simulator(config=_config)
 

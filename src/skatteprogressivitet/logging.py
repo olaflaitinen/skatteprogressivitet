@@ -80,4 +80,4 @@ def get_logger(name: str) -> structlog.stdlib.BoundLogger:
         >>> log is not None
         True
     """
-    return structlog.get_logger(name)  # type: ignore[return-value]
+    return structlog.get_logger(name)  # type: ignore[no-any-return]

@@ -83,7 +83,7 @@ def estimate_counterfactual_density(
 
     coeffs = np.polyfit(fit_centres, fit_counts, poly_degree)
     counterfactual = np.polyval(coeffs, centres)
-    return np.maximum(counterfactual, 0.0)
+    return np.maximum(counterfactual, 0.0)  # type: ignore[no-any-return]
 
 
 def estimate_bunching_eti(

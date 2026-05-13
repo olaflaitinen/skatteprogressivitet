@@ -50,7 +50,7 @@ def square_root_scale(household_size: int) -> float:
     """
     if household_size < 1:
         raise ValueError("household_size must be >= 1.")
-    return float(household_size) ** 0.5
+    return float(household_size) ** 0.5  # type: ignore[no-any-return]
 
 
 def equivalise(

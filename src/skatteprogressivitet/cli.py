@@ -27,7 +27,7 @@ def simulate(
     from skatteprogressivitet.pipelines.runner import Pipeline
 
     console.print(f"[bold]Simulating year {year} (mode={behavioural})...[/bold]")
-    config = Config(baseline_year=year, behavioural=behavioural)  # type: ignore[call-arg]
+    config = Config(baseline_year=year, behavioural=behavioural)  # type: ignore[arg-type]
     pipe = Pipeline(config=config)
     result = pipe.run()
     console.print(f"[green]Done.[/green] n_taxpayers={result.simulation_result.n_taxpayers}")
@@ -51,7 +51,7 @@ def progressivity(
     from skatteprogressivitet.config import Config
     from skatteprogressivitet.pipelines.runner import Pipeline
 
-    config = Config(baseline_year=year)  # type: ignore[call-arg]
+    config = Config(baseline_year=year)  # type: ignore[arg-type]
     pipe = Pipeline(config=config)
     result = pipe.run()
     requested = [i.strip() for i in indices.split(",")]
@@ -132,7 +132,7 @@ def report(
     from skatteprogressivitet.pipelines.runner import Pipeline
     from skatteprogressivitet.reporting.figures import FigureBuilder
 
-    config = Config(baseline_year=year)  # type: ignore[call-arg]
+    config = Config(baseline_year=year)  # type: ignore[arg-type]
     pipe = Pipeline(config=config)
     result = pipe.run()
     fb = FigureBuilder(output_dir=pathlib.Path(output_dir) / "figures")

@@ -78,7 +78,7 @@ def bootstrap_se(
         raise ValueError(f"Unknown statistic {statistic!r}. Choose from {list(fn_map)}.")
 
     fn = fn_map[statistic]
-    point = fn(pre_tax_income, tax)
+    point = fn(pre_tax_income, tax)  # type: ignore[no-untyped-call]
     reps = _bootstrap_replications(pre_tax_income, tax, fn, n_reps, rng)
 
     se = float(np.std(reps, ddof=1))
@@ -158,7 +158,7 @@ def jackknife_se(
     fn = fn_map[statistic]
 
     n = len(pre_tax_income)
-    point = fn(pre_tax_income, tax)
-    jk = np.array([fn(np.delete(pre_tax_income, i), np.delete(tax, i)) for i in range(n)])
+    point = fn(pre_tax_income, tax)  # type: ignore[no-untyped-call]
+    jk = np.array([fn(np.delete(pre_tax_income, i), np.delete(tax, i)) for i in range(n)])  # type: ignore[no-untyped-call]
     se = float(np.sqrt((n - 1) / n * np.sum((jk - np.mean(jk)) ** 2)))
     return float(point), se
