@@ -33,6 +33,7 @@ GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
 def _sha256_dataframe_bytes(df) -> str:
     """Compute SHA-256 of a Polars DataFrame serialised to IPC bytes."""
     buf = df.write_ipc(None)
+    buf.seek(0)
     return hashlib.sha256(buf.read()).hexdigest()
 
 

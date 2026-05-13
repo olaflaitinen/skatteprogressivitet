@@ -85,6 +85,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - About: about.md
   - Installation: installation.md
   - Quickstart: quickstart.md
   - Methodology:
@@ -112,3 +113,15 @@ nav:
       - Pipelines: api/pipelines.md
       - Reporting: api/reporting.md
       - Ingestion: api/ingestion.md
+  - Compliance:
+      - EU Compliance: eu-compliance.md
+      - GDPR: gdpr.md
+      - DPIA Summary: dpia-summary.md
+      - Swedish Legal Basis: swedish-legal-basis.md
+      - OSOR: osor.md
+      - FAIR4RS: fair4rs.md
+      - Accessibility: accessibility.md
+  - Governance:
+      - Governance Model: governance.md
+      - Citation: citation.md
+      - Glossary: glossary.md

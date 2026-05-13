@@ -91,3 +91,4 @@ uv run bandit -r src -lll
 - [ ] No personal data or real microdata.
 - [ ] If adding a legislation year: SFS citation, inline diff, golden record, unit test.
 - [ ] `docs/deviations.md` updated if a requirement is stubbed.
+- [ ] `CHANGELOG.md` updated under `[Unreleased]`.

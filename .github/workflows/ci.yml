@@ -16,8 +16,12 @@ concurrency:
 
 jobs:
   lint:
-    name: Lint (ruff + mypy)
-    runs-on: ubuntu-22.04
+    name: Lint and format (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-14, windows-2022]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
       - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5  # v5.4.1
@@ -29,22 +33,34 @@ jobs:
         run: uv run ruff check src tests
       - name: ruff format
         run: uv run ruff format --check src tests
+
+  typecheck:
+    name: Type check
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5  # v5.4.1
+        with:
+          python-version: "3.12"
+      - name: Install dev dependencies
+        run: uv sync --extra dev
       - name: mypy
         run: uv run mypy src
 
   test:
-    name: Tests (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-22.04
+    name: Test Python ${{ matrix.python }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        os: [ubuntu-22.04, macos-14, windows-2022]
+        python: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.python }}
       - name: Install dev dependencies
         run: uv sync --extra dev
       - name: Run tests with coverage
@@ -55,12 +71,16 @@ jobs:
             --cov-report=term-missing \
             --cov-fail-under=90 \
             -v
+        env:
+          OMP_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303  # v5.1.2
+        if: matrix.os == 'ubuntu-22.04' && matrix.python == '3.12'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
-          flags: python${{ matrix.python-version }}
+          fail_ci_if_error: false
 
   audit:
     name: Security audit
@@ -101,3 +121,16 @@ jobs:
         with:
           name: dist
           path: dist/
+
+  docs:
+    name: Build documentation
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: astral-sh/setup-uv@e5ac9c8fd4f55c31b55e10e8ca8fe0622d585af5  # v5.4.1
+        with:
+          python-version: "3.12"
+      - name: Install docs dependencies
+        run: uv sync --extra docs
+      - name: Build docs
+        run: uv run mkdocs build

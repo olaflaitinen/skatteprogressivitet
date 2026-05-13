@@ -4,17 +4,17 @@ Upstream-Contact: olaf.laitinen@su.se
 Source: https://github.com/olaflaitinen/skatteprogressivitet
 
 Files: *
-Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov
+Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundstrom Imanov
 License: EUPL-1.2
 
 Files: data/synthetic/*
-Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov
+Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundstrom Imanov
 License: CC0-1.0
 
 Files: data/legislation/*
-Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov
+Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundstrom Imanov
 License: EUPL-1.2
 
 Files: docs/*.md docs/**/*.md
-Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundström Imanov
+Copyright: 2024-2026 Gustav Olaf Yunus Laitinen-Fredriksson Lundstrom Imanov
 License: CC-BY-4.0

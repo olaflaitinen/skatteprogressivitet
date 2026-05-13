@@ -1,0 +1,8 @@
+{
+  "description": "Static simulation year 2025, n=5000, seed=20251008",
+  "year": 2025,
+  "seed": 20251008,
+  "n_taxpayers": 5000,
+  "checksum": "504b854e24f66bf3499465036e84fae9c7eae937511efe2ad340e01031388fca",
+  "generated": "2026-05-13T11:10:44.135180+00:00"
+}

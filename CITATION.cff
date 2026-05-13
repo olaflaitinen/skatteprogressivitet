@@ -17,7 +17,6 @@ abstract: >-
 license: EUPL-1.2
 repository-code: "https://github.com/olaflaitinen/skatteprogressivitet"
 url: "https://olaflaitinen.github.io/skatteprogressivitet"
-doi: ""
 keywords:
   - tax progressivity
   - microsimulation
