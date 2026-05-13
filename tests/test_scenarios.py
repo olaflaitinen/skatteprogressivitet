@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from skatteprogressivitet.scenarios.loader import load_all_scenarios, load_scenario
+from skatteprogressivitet.scenarios.loader import load_all_scenarios
 from skatteprogressivitet.scenarios.runner import run_scenario
-from skatteprogressivitet.paths import SCENARIO_ROOT
 
 EXPECTED_SCENARIOS = [
     "broaden-capital-base",

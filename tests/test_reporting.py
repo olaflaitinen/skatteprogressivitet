@@ -6,12 +6,11 @@ import pathlib
 import tempfile
 
 import numpy as np
-import polars as pl
 import pandas as pd
-import pytest
+import polars as pl
 
-from skatteprogressivitet.reporting.tables import to_csv_with_bom, to_parquet, to_latex_table
 from skatteprogressivitet.reporting.figures import FigureBuilder
+from skatteprogressivitet.reporting.tables import to_csv_with_bom, to_latex_table, to_parquet
 
 
 def test_to_csv_with_bom_writes_file() -> None:

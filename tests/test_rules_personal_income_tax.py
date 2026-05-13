@@ -8,10 +8,10 @@ from hypothesis import strategies as st
 
 from skatteprogressivitet.legislation.loader import load_year
 from skatteprogressivitet.rules.personal_income_tax import (
-    compute_personal_income_tax,
-    _compute_statlig,
     _compute_kommunal,
     _compute_marginal_rate,
+    _compute_statlig,
+    compute_personal_income_tax,
 )
 
 

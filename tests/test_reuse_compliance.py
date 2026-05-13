@@ -5,18 +5,13 @@ from __future__ import annotations
 import pathlib
 import re
 
-import pytest
-
 REPO_ROOT = pathlib.Path(__file__).parent.parent
 
 EM_DASH = "\u2014"
 EN_DASH = "\u2013"
 
 EMOJI_PATTERN = re.compile(
-    "[\U0001f300-\U0001f9ff"
-    "\U00002600-\U000027bf"
-    "\U0001fa00-\U0001fa9f"
-    "\U00002702-\U000027b0]+",
+    "[\U0001f300-\U0001f9ff\U00002600-\U000027bf\U0001fa00-\U0001fa9f\U00002702-\U000027b0]+",
     re.UNICODE,
 )
 
@@ -41,11 +36,7 @@ def test_no_em_dash_in_source_files() -> None:
         except OSError:
             continue
         if EM_DASH in content:
-            lines = [
-                i + 1
-                for i, line in enumerate(content.splitlines())
-                if EM_DASH in line
-            ]
+            lines = [i + 1 for i, line in enumerate(content.splitlines()) if EM_DASH in line]
             violations.append(f"{path.relative_to(REPO_ROOT)}: lines {lines}")
     assert not violations, "Em-dash (U+2014) found:\n" + "\n".join(violations)
 
@@ -58,11 +49,7 @@ def test_no_en_dash_in_source_files() -> None:
         except OSError:
             continue
         if EN_DASH in content:
-            lines = [
-                i + 1
-                for i, line in enumerate(content.splitlines())
-                if EN_DASH in line
-            ]
+            lines = [i + 1 for i, line in enumerate(content.splitlines()) if EN_DASH in line]
             violations.append(f"{path.relative_to(REPO_ROOT)}: lines {lines}")
     assert not violations, "En-dash (U+2013) found:\n" + "\n".join(violations)
 

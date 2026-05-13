@@ -7,9 +7,9 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from skatteprogressivitet.simulator.equivalence import (
+    equivalise,
     oecd_modified_scale,
     square_root_scale,
-    equivalise,
 )
 
 

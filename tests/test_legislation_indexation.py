@@ -5,13 +5,13 @@ from __future__ import annotations
 import pytest
 
 from skatteprogressivitet.legislation.indexation import (
-    get_basbelopp,
-    get_prisbasbelopp,
-    get_inkomstbasbelopp,
-    index_threshold,
     BASBELOPP_SERIES,
-    PRISBASBELOPP_SERIES,
     INKOMSTBASBELOPP_SERIES,
+    PRISBASBELOPP_SERIES,
+    get_basbelopp,
+    get_inkomstbasbelopp,
+    get_prisbasbelopp,
+    index_threshold,
 )
 
 

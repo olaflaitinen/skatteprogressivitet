@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-import pytest
 import polars as pl
+import pytest
 
-from skatteprogressivitet.simulator.engine import Simulator, SimulationResult
-from skatteprogressivitet.config import Config
+from skatteprogressivitet.simulator.engine import SimulationResult, Simulator
 
 
 @pytest.fixture(scope="module")

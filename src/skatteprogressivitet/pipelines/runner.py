@@ -12,7 +12,6 @@ from typing import Any
 import polars as pl
 
 from skatteprogressivitet.config import Config
-from skatteprogressivitet.pipelines.dag import DAG, Task
 
 
 @dataclasses.dataclass
@@ -70,13 +69,17 @@ class Pipeline:
             >>> "kakwani" in result.progressivity
             True
         """
-        from skatteprogressivitet.simulator.engine import Simulator
+
         from skatteprogressivitet.progressivity.indices import (
-            kakwani, suits, gini, theil, atkinson,
+            atkinson,
+            gini,
+            kakwani,
+            suits,
+            theil,
         )
         from skatteprogressivitet.scenarios.loader import load_all_scenarios
         from skatteprogressivitet.scenarios.runner import run_scenario
-        import numpy as np
+        from skatteprogressivitet.simulator.engine import Simulator
 
         _taxpayers = taxpayers or self._load_synthetic()
 
@@ -118,14 +121,17 @@ class Pipeline:
         Returns:
             List of taxpayer dictionaries.
         """
-        from skatteprogressivitet.paths import SYNTHETIC_ROOT
         import pyarrow.parquet as pq
+
+        from skatteprogressivitet.paths import SYNTHETIC_ROOT
 
         path = SYNTHETIC_ROOT / "lisa_like.parquet"
         if path.exists():
             tbl = pq.read_table(str(path))
-            return tbl.to_pydict_list() if hasattr(tbl, "to_pydict_list") else (
-                pl.from_arrow(tbl).to_dicts()
+            return (
+                tbl.to_pydict_list()
+                if hasattr(tbl, "to_pydict_list")
+                else (pl.from_arrow(tbl).to_dicts())
             )
         return [
             {"labour_income": 300000.0, "capital_income": 0.0, "age": 40, "self_employed": False}

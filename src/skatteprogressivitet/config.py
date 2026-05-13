@@ -6,10 +6,9 @@ Construct one instance per simulation run and pass it explicitly to subsystems.
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
-
 
 BASELINE_YEARS = Literal[1991, 1995, 2000, 2007, 2015, 2020, 2025]
 BEHAVIOURAL_MODE = Literal["none", "eti", "full"]
@@ -34,7 +33,7 @@ class Config(BaseModel):
     data_root: str = ""
     seed: int = Field(default=20251008, ge=0)
     baseline_year: BASELINE_YEARS = 2025
-    scenario_id: Optional[str] = None
+    scenario_id: str | None = None
     behavioural: BEHAVIOURAL_MODE = "full"
     eti_intensive: float = Field(default=0.3, ge=0.0, le=5.0)
     eti_extensive: float = Field(default=0.1, ge=0.0, le=5.0)

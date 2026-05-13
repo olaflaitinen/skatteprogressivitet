@@ -7,11 +7,6 @@ thresholds and transfer ceilings across years.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from skatteprogressivitet.legislation.schema import Legislation
-
 BASBELOPP_SERIES: dict[int, float] = {
     1991: 32200,
     1995: 35700,

@@ -39,4 +39,4 @@ UR  - https://github.com/olaflaitinen/skatteprogressivitet
 ER  -
 ```
 
-See also [CITATION.cff](../CITATION.cff) for machine-readable citation metadata.
+See also [CITATION.cff](https://github.com/olaflaitinen/skatteprogressivitet/blob/main/CITATION.cff) for machine-readable citation metadata.

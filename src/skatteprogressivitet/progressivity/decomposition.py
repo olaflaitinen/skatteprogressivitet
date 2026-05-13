@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from skatteprogressivitet.progressivity.indices import gini, concentration_index
+from skatteprogressivitet.progressivity.indices import concentration_index, gini
 
 
 def decompose_kakwani(

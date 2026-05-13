@@ -34,4 +34,4 @@ See [FAIR4RS](fair4rs.md) for the full FAIR principles for Research Software mat
 
 ## NIS2
 
-Security and supply-chain practices are documented in [SECURITY.md](../SECURITY.md).
+Security and supply-chain practices are documented in [SECURITY.md](https://github.com/olaflaitinen/skatteprogressivitet/blob/main/SECURITY.md).

@@ -106,9 +106,5 @@ class ETIResponse:
         """
         if mean_net_income_gain <= 0:
             return participation_probability
-        elasticity_adjustment = self.eti_extensive * (
-            net_income_gain / mean_net_income_gain - 1.0
-        )
-        return float(
-            min(1.0, max(0.0, participation_probability * (1.0 + elasticity_adjustment)))
-        )
+        elasticity_adjustment = self.eti_extensive * (net_income_gain / mean_net_income_gain - 1.0)
+        return float(min(1.0, max(0.0, participation_probability * (1.0 + elasticity_adjustment))))

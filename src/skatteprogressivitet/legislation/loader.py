@@ -8,12 +8,15 @@ model.
 from __future__ import annotations
 
 import json
-import pathlib
+from typing import TYPE_CHECKING
 
 import yaml
 
 from skatteprogressivitet.legislation.schema import Legislation
 from skatteprogressivitet.paths import LEGISLATION_ROOT
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 def _load_raw(path: pathlib.Path) -> dict:  # type: ignore[type-arg]

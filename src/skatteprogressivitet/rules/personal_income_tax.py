@@ -6,10 +6,13 @@ under a given year's :class:`Legislation`.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from skatteprogressivitet.legislation.schema import Legislation
 from skatteprogressivitet.rules.jobbskatteavdrag import compute_jobbskatteavdrag
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.ledger import TaxOutcome
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 def _compute_statlig(labour_income: float, leg: Legislation) -> float:
@@ -30,7 +33,7 @@ def _compute_statlig(labour_income: float, leg: Legislation) -> float:
     """
     tax = 0.0
     brackets = leg.statlig_skatt.brackets
-    for i, bracket in enumerate(brackets):
+    for _i, bracket in enumerate(brackets):
         lower = bracket.lower
         upper = bracket.upper if bracket.upper is not None else float("inf")
         if labour_income <= lower:
@@ -95,7 +98,7 @@ def _compute_marginal_rate(labour_income: float, leg: Legislation) -> float:
 def compute_personal_income_tax(
     taxpayer: dict[str, Any],
     leg: Legislation,
-) -> "TaxOutcome":
+) -> TaxOutcome:
     """Compute full personal income tax outcome for a single taxpayer.
 
     Args:

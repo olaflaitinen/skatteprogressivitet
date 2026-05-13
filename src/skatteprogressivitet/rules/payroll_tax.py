@@ -6,7 +6,10 @@ Implements arbetsgivaravgifter (employer payroll taxes) and egenavgifter
 
 from __future__ import annotations
 
-from skatteprogressivitet.legislation.schema import Legislation
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 def compute_arbetsgivaravgift(

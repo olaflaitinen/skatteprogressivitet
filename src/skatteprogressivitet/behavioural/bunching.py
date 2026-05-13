@@ -72,9 +72,7 @@ def estimate_counterfactual_density(
     bins = np.arange(lo, hi + bin_width, bin_width)
     centres = (bins[:-1] + bins[1:]) / 2.0
 
-    counts = np.array(
-        [count_bin_mass(incomes, bins[i], bins[i + 1]) for i in range(len(centres))]
-    )
+    counts = np.array([count_bin_mass(incomes, bins[i], bins[i + 1]) for i in range(len(centres))])
 
     exclude = (centres >= threshold - window_lower) & (centres <= threshold + window_upper)
     fit_centres = centres[~exclude]

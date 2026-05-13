@@ -41,10 +41,7 @@ def test_dividend_above_ceiling_generates_excess(leg2025) -> None:
 
 def test_qualified_rate_lower_than_excess_rate(leg2025) -> None:
     assert leg2025.three_twelve is not None
-    assert (
-        leg2025.three_twelve.dividend_rate_qualified
-        < leg2025.three_twelve.dividend_rate_excess
-    )
+    assert leg2025.three_twelve.dividend_rate_qualified < leg2025.three_twelve.dividend_rate_excess
 
 
 def test_disabled_legislation_returns_zeros() -> None:

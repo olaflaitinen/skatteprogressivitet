@@ -7,7 +7,6 @@ predicted mass shift at the britpunkt as an instrument for the net-of-tax rate.
 from __future__ import annotations
 
 import numpy as np
-import pandas as pd
 
 
 def tsls(

@@ -7,8 +7,8 @@ import pytest
 
 from skatteprogressivitet.progressivity.standard_errors import (
     bootstrap_se,
-    jackknife_se,
     influence_function_se,
+    jackknife_se,
 )
 
 
@@ -30,6 +30,7 @@ def test_bootstrap_se_returns_tuple(sample_system) -> None:
 
 def test_bootstrap_se_point_matches_direct(sample_system) -> None:
     from skatteprogressivitet.progressivity.indices import kakwani
+
     y, t = sample_system
     point, _, _ = bootstrap_se(y, t, statistic="kakwani", n_reps=50, seed=7)
     direct = kakwani(y, t)

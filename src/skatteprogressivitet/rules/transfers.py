@@ -7,7 +7,10 @@ arbetslöshetsersättning (unemployment benefit), and sjukersättning
 
 from __future__ import annotations
 
-from skatteprogressivitet.legislation.schema import Legislation
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 def _daily_rate(annual_income: float, replacement_rate: float, ceiling_sek: float) -> float:

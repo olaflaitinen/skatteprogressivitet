@@ -7,8 +7,6 @@ thresholds and non-negative rates.
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel, Field, model_validator
 
 
@@ -22,7 +20,7 @@ class Bracket(BaseModel):
     """
 
     lower: float = Field(ge=0)
-    upper: Optional[float] = None
+    upper: float | None = None
     rate: float = Field(ge=0, le=1)
 
     model_config = {"frozen": True}
@@ -42,7 +40,7 @@ class StatligSkatt(BaseModel):
     model_config = {"frozen": True}
 
     @model_validator(mode="after")
-    def _monotone_brackets(self) -> "StatligSkatt":
+    def _monotone_brackets(self) -> StatligSkatt:
         """Validate that bracket lower bounds are strictly increasing.
 
         Returns:
@@ -85,7 +83,7 @@ class Kapitalinkomstskatt(BaseModel):
     """
 
     standard_rate: float = Field(ge=0, le=1)
-    dividend_rate: Optional[float] = Field(default=None, ge=0, le=1)
+    dividend_rate: float | None = Field(default=None, ge=0, le=1)
     notes: str = ""
 
     model_config = {"frozen": True}
@@ -103,9 +101,9 @@ class Arbetsgivaravgift(BaseModel):
     """
 
     rate: float = Field(ge=0, le=1)
-    ceiling: Optional[float] = None
-    reduced_rate_under_26: Optional[float] = Field(default=None, ge=0, le=1)
-    reduced_rate_over_65: Optional[float] = Field(default=None, ge=0, le=1)
+    ceiling: float | None = None
+    reduced_rate_under_26: float | None = Field(default=None, ge=0, le=1)
+    reduced_rate_over_65: float | None = Field(default=None, ge=0, le=1)
     notes: str = ""
 
     model_config = {"frozen": True}
@@ -121,7 +119,7 @@ class Egenavgift(BaseModel):
     """
 
     rate: float = Field(ge=0, le=1)
-    ceiling: Optional[float] = None
+    ceiling: float | None = None
     notes: str = ""
 
     model_config = {"frozen": True}
@@ -138,9 +136,9 @@ class JSSSegment(BaseModel):
     """
 
     income_lower: float = Field(ge=0)
-    income_upper: Optional[float] = None
+    income_upper: float | None = None
     formula: str
-    max_credit: Optional[float] = None
+    max_credit: float | None = None
 
     model_config = {"frozen": True}
 
@@ -260,9 +258,9 @@ class Legislation(BaseModel):
     arbetsgivaravgift: Arbetsgivaravgift
     egenavgift: Egenavgift
     jobbskatteavdrag: Jobbskatteavdrag
-    three_twelve: Optional[ThreeTwelve] = None
-    housing_allowance: Optional[HousingAllowance] = None
-    transfers: Optional[Transfers] = None
+    three_twelve: ThreeTwelve | None = None
+    housing_allowance: HousingAllowance | None = None
+    transfers: Transfers | None = None
 
     basbelopp: float = Field(ge=0)
     prisbasbelopp: float = Field(ge=0)

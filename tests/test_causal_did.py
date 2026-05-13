@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from skatteprogressivitet.causal.did import twfe_did, callaway_santanna_att
+from skatteprogressivitet.causal.did import callaway_santanna_att, twfe_did
 
 
 @pytest.fixture
@@ -16,9 +16,7 @@ def panel_df():
     units = np.repeat(np.arange(n_units), n_times)
     times = np.tile(np.arange(n_times), n_units)
     treat_units = np.arange(20)
-    treat_indicator = (
-        (np.isin(units, treat_units)) & (times >= 4)
-    ).astype(float)
+    treat_indicator = ((np.isin(units, treat_units)) & (times >= 4)).astype(float)
     y = rng.normal(0, 1, n_units * n_times) + treat_indicator * 2.0
     return pd.DataFrame({"unit": units, "time": times, "treat": treat_indicator, "y": y})
 

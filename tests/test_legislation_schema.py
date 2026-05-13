@@ -7,12 +7,9 @@ from pydantic import ValidationError
 
 from skatteprogressivitet.legislation.schema import (
     Bracket,
-    StatligSkatt,
     KommunalSkatt,
-    Kapitalinkomstskatt,
-    Arbetsgivaravgift,
-    Jobbskatteavdrag,
     Legislation,
+    StatligSkatt,
 )
 
 

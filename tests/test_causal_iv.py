@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 import numpy as np
-import pytest
 
-from skatteprogressivitet.causal.iv import tsls, bunching_iv
+from skatteprogressivitet.causal.iv import bunching_iv, tsls
 
 
 def test_tsls_consistent_estimate() -> None:

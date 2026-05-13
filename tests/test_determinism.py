@@ -2,17 +2,20 @@
 
 from __future__ import annotations
 
+import numpy as np
 import pytest
 
+from skatteprogressivitet.progressivity.indices import gini, kakwani
+from skatteprogressivitet.seeds import MODEL_SEED, set_global_seed
 from skatteprogressivitet.simulator.engine import Simulator
-from skatteprogressivitet.progressivity.indices import kakwani, gini
-from skatteprogressivitet.seeds import set_global_seed, MODEL_SEED
-import numpy as np
-
 
 POPULATION = [
-    {"labour_income": float(i * 50_000), "capital_income": 0.0, "age": 30 + i % 20,
-     "self_employed": False}
+    {
+        "labour_income": float(i * 50_000),
+        "capital_income": 0.0,
+        "age": 30 + i % 20,
+        "self_employed": False,
+    }
     for i in range(1, 21)
 ]
 

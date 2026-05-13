@@ -6,10 +6,13 @@ deterministic synthetic tax-register fixture generator.
 
 from __future__ import annotations
 
-import pathlib
+from typing import TYPE_CHECKING
 
 import numpy as np
 import polars as pl
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 def read_tax_register(path: pathlib.Path) -> pl.DataFrame:

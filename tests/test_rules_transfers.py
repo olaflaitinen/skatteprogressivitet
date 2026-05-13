@@ -6,9 +6,9 @@ import pytest
 
 from skatteprogressivitet.legislation.loader import load_year
 from skatteprogressivitet.rules.transfers import (
-    compute_sjukpenning,
-    compute_foraldrapenning,
     compute_a_kassa,
+    compute_foraldrapenning,
+    compute_sjukpenning,
 )
 
 

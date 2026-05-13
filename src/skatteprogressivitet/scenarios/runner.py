@@ -7,16 +7,18 @@ Applies a :class:`Scenario`'s parameter overrides to a baseline
 
 from __future__ import annotations
 
-import dataclasses
 import copy
-from typing import Any
+import dataclasses
+from typing import TYPE_CHECKING, Any
 
-import polars as pl
-
-from skatteprogressivitet.scenarios.loader import Scenario
-from skatteprogressivitet.legislation.ledger import LegislationLedger
-from skatteprogressivitet.simulator.engine import Simulator, SimulationResult
 from skatteprogressivitet.config import Config
+from skatteprogressivitet.legislation.ledger import LegislationLedger
+from skatteprogressivitet.simulator.engine import SimulationResult, Simulator
+
+if TYPE_CHECKING:
+    import polars as pl
+
+    from skatteprogressivitet.scenarios.loader import Scenario
 
 
 @dataclasses.dataclass
@@ -109,8 +111,8 @@ def run_scenario(
 
     modified_leg = Legislation.model_validate(modified_dict)
 
-    from skatteprogressivitet.rules.personal_income_tax import compute_personal_income_tax
     from skatteprogressivitet.legislation.ledger import TaxOutcome
+    from skatteprogressivitet.rules.personal_income_tax import compute_personal_income_tax
 
     records = taxpayers if isinstance(taxpayers, list) else taxpayers.to_dicts()
     cf_outcomes: list[TaxOutcome] = [
@@ -125,14 +127,14 @@ def run_scenario(
         dataframe=cf_df,
     )
 
-    base_revenue = float(
-        sum(o.total_tax for o in baseline.outcomes)
-    )
+    base_revenue = float(sum(o.total_tax for o in baseline.outcomes))
     cf_revenue_static = float(sum(o.total_tax for o in cf_outcomes))
     revenue_change_static = cf_revenue_static - base_revenue
 
     if scenario.behavioural in ("eti", "full"):
-        cf_behavioural = sim.run(taxpayers, year=scenario.baseline_year, behavioural=scenario.behavioural)
+        cf_behavioural = sim.run(
+            taxpayers, year=scenario.baseline_year, behavioural=scenario.behavioural
+        )
         cf_rev_beh = float(sum(o.total_tax for o in cf_behavioural.outcomes))
         revenue_change_behavioural = cf_rev_beh - base_revenue
     else:

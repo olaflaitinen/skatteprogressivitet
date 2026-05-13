@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-import pytest
-
 from skatteprogressivitet.behavioural.extensive_margin import (
-    probit_participation_probability,
     extensive_margin_revenue_effect,
+    probit_participation_probability,
 )
 
 

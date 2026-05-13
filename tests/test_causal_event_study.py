@@ -14,7 +14,7 @@ def event_df():
     rng = np.random.default_rng(42)
     n_units, n_times = 20, 10
     event_times = np.array([5.0] * 10 + [np.nan] * 10)
-    df = pd.DataFrame(
+    return pd.DataFrame(
         {
             "unit": np.repeat(np.arange(n_units), n_times),
             "time": np.tile(np.arange(n_times), n_units),
@@ -22,7 +22,6 @@ def event_df():
             "y": rng.normal(0, 1, n_units * n_times),
         }
     )
-    return df
 
 
 def test_event_study_returns_dataframe(event_df) -> None:

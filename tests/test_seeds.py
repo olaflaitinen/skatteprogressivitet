@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-import pytest
-
 from skatteprogressivitet.seeds import (
-    set_global_seed,
-    get_global_seed,
-    derive_seed,
+    BOOTSTRAP_SEED,
     MODEL_SEED,
     SYNTHETIC_SEED,
-    BOOTSTRAP_SEED,
+    derive_seed,
+    get_global_seed,
+    set_global_seed,
 )
 
 

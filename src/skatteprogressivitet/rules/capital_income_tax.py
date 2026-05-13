@@ -6,7 +6,10 @@ year-specific special schedules defined in the legislation ledger.
 
 from __future__ import annotations
 
-from skatteprogressivitet.legislation.schema import Legislation
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 def compute_capital_income_tax(net_capital_income: float, leg: Legislation) -> float:
@@ -37,10 +40,7 @@ def compute_capital_income_tax(net_capital_income: float, leg: Legislation) -> f
         return net_capital_income * rate
 
     loss = abs(net_capital_income)
-    if loss <= 100_000:
-        credit = loss * rate
-    else:
-        credit = 100_000 * rate + (loss - 100_000) * 0.21
+    credit = loss * rate if loss <= 100000 else 100000 * rate + (loss - 100000) * 0.21
     return -credit
 
 

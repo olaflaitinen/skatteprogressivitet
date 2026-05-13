@@ -8,7 +8,13 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from skatteprogressivitet.progressivity.indices import (
-    gini, kakwani, suits, residual_progression, theil, atkinson, concentration_index,
+    atkinson,
+    concentration_index,
+    gini,
+    kakwani,
+    residual_progression,
+    suits,
+    theil,
 )
 
 

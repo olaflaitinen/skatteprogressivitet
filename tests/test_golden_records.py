@@ -15,10 +15,10 @@ import pathlib
 
 import pytest
 
-from skatteprogressivitet.simulator.engine import Simulator
-from skatteprogressivitet.ingestion.lisa import synthetic_lisa
 from skatteprogressivitet.config import Config
+from skatteprogressivitet.ingestion.lisa import synthetic_lisa
 from skatteprogressivitet.seeds import MODEL_SEED, SYNTHETIC_SEED
+from skatteprogressivitet.simulator.engine import Simulator
 
 GOLDEN_DIR = pathlib.Path(__file__).parent / "golden"
 

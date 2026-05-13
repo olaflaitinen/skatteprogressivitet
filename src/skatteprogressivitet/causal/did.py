@@ -131,9 +131,7 @@ def callaway_santanna_att(
         if control_group == "never_treated":
             ctrl_units = df.loc[df[cohort].isna(), unit_id].unique()
         else:
-            ctrl_units = df.loc[
-                df[cohort].isna() | (df[cohort] > g), unit_id
-            ].unique()
+            ctrl_units = df.loc[df[cohort].isna() | (df[cohort] > g), unit_id].unique()
 
         pre_period = g - 1
         post_periods = sorted(t for t in df[time_id].unique() if t >= g)

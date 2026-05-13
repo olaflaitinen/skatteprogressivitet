@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import numpy as np
 import pytest
 
 from skatteprogressivitet.legislation.loader import load_year
-from skatteprogressivitet.legislation.schema import Legislation
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 @pytest.fixture(scope="session")
@@ -53,5 +57,4 @@ def income_array() -> np.ndarray:
 def tax_array(income_array: np.ndarray) -> np.ndarray:
     """Return a simple proportional-progressive tax array."""
     y = income_array
-    t = np.where(y < 300_000, y * 0.30, y * 0.30 + (y - 300_000) * 0.20)
-    return t
+    return np.where(y < 300_000, y * 0.30, y * 0.30 + (y - 300_000) * 0.20)

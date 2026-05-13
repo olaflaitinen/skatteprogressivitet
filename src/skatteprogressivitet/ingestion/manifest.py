@@ -7,7 +7,7 @@ and loaders for reading and validating manifests.
 from __future__ import annotations
 
 import pathlib
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 from pydantic import BaseModel, Field
@@ -28,8 +28,8 @@ class DatasetSpec(BaseModel):
     name: str
     path: str
     format: str = "parquet"
-    sha256: Optional[str] = None
-    n_rows: Optional[int] = Field(default=None, ge=0)
+    sha256: str | None = None
+    n_rows: int | None = Field(default=None, ge=0)
     notes: str = ""
 
     model_config = {"frozen": True}

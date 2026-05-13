@@ -8,7 +8,10 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import Any, Callable
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 class Task:
@@ -79,7 +82,7 @@ class DAG:
         self.tasks: list[Task] = []
         self._outputs: dict[str, Any] = {}
 
-    def add_task(self, task: Task) -> "DAG":
+    def add_task(self, task: Task) -> DAG:
         """Add a task to the DAG.
 
         Args:

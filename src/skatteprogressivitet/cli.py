@@ -5,8 +5,6 @@ All output goes through typer / rich; no bare print statements outside this modu
 
 from __future__ import annotations
 
-from typing import Optional
-
 import typer
 from rich.console import Console
 
@@ -22,11 +20,10 @@ console = Console()
 def simulate(
     year: int = typer.Option(2025, help="Legislation year."),
     behavioural: str = typer.Option("full", help="Behavioural mode: none|eti|full."),
-    output: Optional[str] = typer.Option(None, help="Output Parquet path."),
+    output: str | None = typer.Option(None, help="Output Parquet path."),
 ) -> None:
     """Run a static/behavioural simulation for a given year."""
     from skatteprogressivitet.config import Config
-    from skatteprogressivitet.simulator.engine import Simulator
     from skatteprogressivitet.pipelines.runner import Pipeline
 
     console.print(f"[bold]Simulating year {year} (mode={behavioural})...[/bold]")
@@ -38,7 +35,9 @@ def simulate(
 
     if output:
         import pathlib
+
         from skatteprogressivitet.reporting.tables import to_parquet
+
         to_parquet(result.simulation_result.dataframe, pathlib.Path(output))
         console.print(f"[blue]Saved to {output}[/blue]")
 
@@ -68,6 +67,7 @@ def scenario(
 ) -> None:
     """Run a counterfactual scenario."""
     import pathlib
+
     from skatteprogressivitet.scenarios.loader import load_scenario
     from skatteprogressivitet.scenarios.runner import run_scenario
 
@@ -82,10 +82,10 @@ def scenario(
 @app.command()
 def validate_legislation(
     all_years: bool = typer.Option(False, "--all", help="Validate all years."),
-    year: Optional[int] = typer.Option(None, help="Validate a single year."),
+    year: int | None = typer.Option(None, help="Validate a single year."),
 ) -> None:
     """Validate legislation YAML files against the JSON schema."""
-    from skatteprogressivitet.legislation.loader import load_year, load_all
+    from skatteprogressivitet.legislation.loader import load_all, load_year
 
     if all_years:
         ledger = load_all()
@@ -125,10 +125,12 @@ def report(
 ) -> None:
     """Generate all standard report figures and tables."""
     import pathlib
+
+    import numpy as np
+
     from skatteprogressivitet.config import Config
     from skatteprogressivitet.pipelines.runner import Pipeline
     from skatteprogressivitet.reporting.figures import FigureBuilder
-    import numpy as np
 
     config = Config(baseline_year=year)  # type: ignore[call-arg]
     pipe = Pipeline(config=config)
@@ -174,9 +176,7 @@ def audit() -> None:
     console.print("[bold]Running pip-audit...[/bold]")
     subprocess.run([sys.executable, "-m", "pip_audit", "--strict"], check=False)
     console.print("[bold]Running bandit...[/bold]")
-    subprocess.run(
-        [sys.executable, "-m", "bandit", "-r", "src", "-lll"], check=False
-    )
+    subprocess.run([sys.executable, "-m", "bandit", "-r", "src", "-lll"], check=False)
 
 
 @app.command()
@@ -188,9 +188,7 @@ def sbom(
     import sys
 
     console.print(f"[bold]Generating SBOM to {output}...[/bold]")
-    subprocess.run(
-        [sys.executable, "-m", "cyclonedx_py", "-o", output], check=False
-    )
+    subprocess.run([sys.executable, "-m", "cyclonedx_py", "-o", output], check=False)
     console.print(f"[green]SBOM written to {output}[/green]")
 
 
@@ -198,7 +196,6 @@ def sbom(
 def reuse_check() -> None:
     """Verify REUSE 3.0 compliance."""
     import subprocess
-    import sys
 
     console.print("[bold]Running reuse lint...[/bold]")
     result = subprocess.run(["reuse", "lint"], check=False)

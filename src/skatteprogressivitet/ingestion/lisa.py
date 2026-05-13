@@ -7,11 +7,13 @@ and testing.
 
 from __future__ import annotations
 
-import pathlib
+from typing import TYPE_CHECKING
 
 import numpy as np
 import polars as pl
 
+if TYPE_CHECKING:
+    import pathlib
 
 LISA_SCHEMA: dict[str, type] = {
     "person_id": str,
@@ -92,8 +94,7 @@ def synthetic_lisa(
         edu = rng.integers(1, 5, size=n)
         sector = rng.choice(["private", "public", "self"], size=n, p=[0.65, 0.30, 0.05])
         region = rng.choice(
-            ["Stockholm", "Gothenburg", "Malmö", "Other"], size=n,
-            p=[0.25, 0.10, 0.08, 0.57]
+            ["Stockholm", "Gothenburg", "Malmö", "Other"], size=n, p=[0.25, 0.10, 0.08, 0.57]
         )
         self_emp = sector == "self"
         n_children = rng.integers(0, 4, size=n)

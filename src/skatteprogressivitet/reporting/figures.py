@@ -5,21 +5,25 @@ Produces publication-quality PNG, SVG, and PDF/A-2u figures using matplotlib.
 
 from __future__ import annotations
 
-import pathlib
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
+if TYPE_CHECKING:
+    import pathlib
 
-def _get_axes() -> "tuple[Any, Any]":
+
+def _get_axes() -> tuple[Any, Any]:
     """Import matplotlib and return a new (fig, ax) pair.
 
     Returns:
         Tuple of (Figure, Axes).
     """
     import matplotlib
+
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+
     fig, ax = plt.subplots(figsize=(8, 5))
     return fig, ax
 
@@ -38,6 +42,7 @@ class FigureBuilder:
             output_dir: Output directory. Defaults to ``reports/figures``.
         """
         from skatteprogressivitet.paths import REPORTS_ROOT
+
         self.output_dir: pathlib.Path = output_dir or (REPORTS_ROOT / "figures")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -74,8 +79,7 @@ class FigureBuilder:
         fig, ax = _get_axes()
         ax.plot(incomes / 1000, average_rates * 100, label="Average rate", linewidth=2)
         ax.plot(
-            incomes / 1000, marginal_rates * 100,
-            label="Marginal rate", linewidth=2, linestyle="--"
+            incomes / 1000, marginal_rates * 100, label="Marginal rate", linewidth=2, linestyle="--"
         )
         ax.set_xlabel("Labour income (kSEK)")
         ax.set_ylabel("Effective tax rate (%)")
@@ -86,6 +90,7 @@ class FigureBuilder:
         if save:
             fig.savefig(out, dpi=150, bbox_inches="tight")
         import matplotlib.pyplot as plt
+
         plt.close(fig)
         return out
 
@@ -115,6 +120,7 @@ class FigureBuilder:
             >>> isinstance(p, pathlib.Path)
             True
         """
+
         def _lorenz(vals: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
             s = np.sort(vals)
             n = len(s)
@@ -137,5 +143,6 @@ class FigureBuilder:
         if save:
             fig.savefig(out, dpi=150, bbox_inches="tight")
         import matplotlib.pyplot as plt
+
         plt.close(fig)
         return out

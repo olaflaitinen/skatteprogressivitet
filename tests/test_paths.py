@@ -2,18 +2,19 @@
 
 from __future__ import annotations
 
-import pathlib
-
-import pytest
+from typing import TYPE_CHECKING
 
 from skatteprogressivitet.paths import (
     DATA_ROOT,
     LEGISLATION_ROOT,
+    REPORTS_ROOT,
     SCENARIO_ROOT,
     SYNTHETIC_ROOT,
-    REPORTS_ROOT,
     ensure_reports_root,
 )
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 def test_data_root_exists() -> None:
@@ -35,6 +36,7 @@ def test_paths_are_absolute() -> None:
 
 def test_ensure_reports_root_creates_dir(tmp_path: pathlib.Path) -> None:
     import skatteprogressivitet.paths as paths_module
+
     original = paths_module.REPORTS_ROOT
     paths_module.REPORTS_ROOT = tmp_path / "reports"
     try:

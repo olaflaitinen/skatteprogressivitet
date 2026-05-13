@@ -1,6 +1,6 @@
 # Governance
 
-See [GOVERNANCE.md](../GOVERNANCE.md) for the full project governance model.
+See [GOVERNANCE.md](https://github.com/olaflaitinen/skatteprogressivitet/blob/main/GOVERNANCE.md) for the full project governance model.
 
 ## Summary
 
@@ -9,6 +9,6 @@ benevolent-dictator-for-now (BDFL) model with the maintainer holding final decis
 authority on all technical and policy questions.
 
 Community contributions are welcome subject to the requirements in
-[CONTRIBUTING.md](../CONTRIBUTING.md). Significant changes to methodology, legislative
+[CONTRIBUTING.md](https://github.com/olaflaitinen/skatteprogressivitet/blob/main/CONTRIBUTING.md). Significant changes to methodology, legislative
 parameters, or licence terms require maintainer approval and a documented rationale in
 [deviations.md](deviations.md).

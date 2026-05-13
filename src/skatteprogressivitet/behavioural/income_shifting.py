@@ -7,7 +7,10 @@ strategy in Alstadsaeter and Jacob (2016) and Blomqvist (2018).
 
 from __future__ import annotations
 
-from skatteprogressivitet.legislation.schema import Legislation
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 def shifting_elasticity(

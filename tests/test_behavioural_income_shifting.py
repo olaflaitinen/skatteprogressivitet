@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import pytest
 
-from skatteprogressivitet.legislation.loader import load_year
 from skatteprogressivitet.behavioural.income_shifting import (
-    shifting_elasticity,
     compute_shifted_income,
+    shifting_elasticity,
 )
+from skatteprogressivitet.legislation.loader import load_year
 
 
 def test_shifting_elasticity_positive_when_differential_positive() -> None:

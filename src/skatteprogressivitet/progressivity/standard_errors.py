@@ -7,16 +7,17 @@ standard errors for the Kakwani, Suits, Gini, and related indices.
 from __future__ import annotations
 
 from typing import Any
+
 import numpy as np
 
-from skatteprogressivitet.progressivity.indices import kakwani, suits, gini
+from skatteprogressivitet.progressivity.indices import gini, kakwani, suits
 from skatteprogressivitet.seeds import derive_seed
 
 
 def _bootstrap_replications(
     pre_tax_income: np.ndarray,
     tax: np.ndarray,
-    statistic_fn: "Any",
+    statistic_fn: Any,
     n_reps: int,
     rng: np.random.Generator,
 ) -> np.ndarray:
@@ -158,10 +159,6 @@ def jackknife_se(
 
     n = len(pre_tax_income)
     point = fn(pre_tax_income, tax)
-    jk = np.array(
-        [fn(np.delete(pre_tax_income, i), np.delete(tax, i)) for i in range(n)]
-    )
+    jk = np.array([fn(np.delete(pre_tax_income, i), np.delete(tax, i)) for i in range(n)])
     se = float(np.sqrt((n - 1) / n * np.sum((jk - np.mean(jk)) ** 2)))
     return float(point), se
-
-

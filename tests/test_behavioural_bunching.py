@@ -7,8 +7,8 @@ import pytest
 
 from skatteprogressivitet.behavioural.bunching import (
     count_bin_mass,
-    estimate_counterfactual_density,
     estimate_bunching_eti,
+    estimate_counterfactual_density,
 )
 
 

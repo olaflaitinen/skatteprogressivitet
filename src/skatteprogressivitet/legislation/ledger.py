@@ -6,11 +6,14 @@ and exposes methods to compute tax outcomes for individual taxpayers.
 
 from __future__ import annotations
 
-import pathlib
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from skatteprogressivitet.legislation.loader import load_all
-from skatteprogressivitet.legislation.schema import Legislation
+
+if TYPE_CHECKING:
+    import pathlib
+
+    from skatteprogressivitet.legislation.schema import Legislation
 
 
 class TaxOutcome:
@@ -53,13 +56,9 @@ class TaxOutcome:
         self.kapitalinkomstskatt = kapitalinkomstskatt
         self.arbetsgivaravgift = arbetsgivaravgift
         self.jobbskatteavdrag = jobbskatteavdrag
-        self.total_tax = (
-            statlig_skatt + kommunal_skatt + kapitalinkomstskatt - jobbskatteavdrag
-        )
+        self.total_tax = statlig_skatt + kommunal_skatt + kapitalinkomstskatt - jobbskatteavdrag
         self.gross_income = gross_income
-        self.effective_average_rate = (
-            self.total_tax / gross_income if gross_income > 0 else 0.0
-        )
+        self.effective_average_rate = self.total_tax / gross_income if gross_income > 0 else 0.0
         self.effective_marginal_rate = marginal_rate
 
     def to_dict(self) -> dict[str, float]:

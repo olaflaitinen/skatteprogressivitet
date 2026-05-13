@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from skatteprogressivitet.legislation.loader import load_year, load_all
+from skatteprogressivitet.legislation.loader import load_all, load_year
 from skatteprogressivitet.legislation.schema import Legislation
-
 
 EXPECTED_YEARS = [1991, 1995, 2000, 2007, 2015, 2020, 2025]
 

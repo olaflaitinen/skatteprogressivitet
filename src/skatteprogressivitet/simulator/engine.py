@@ -104,9 +104,7 @@ class Simulator:
             dataframe=df,
         )
 
-    def _to_records(
-        self, taxpayers: list[dict[str, Any]] | pl.DataFrame
-    ) -> list[dict[str, Any]]:
+    def _to_records(self, taxpayers: list[dict[str, Any]] | pl.DataFrame) -> list[dict[str, Any]]:
         """Convert input to a list of taxpayer dicts.
 
         Args:
@@ -144,7 +142,7 @@ class Simulator:
             eti_extensive=self.config.eti_extensive,
         )
         adjusted: list[TaxOutcome] = []
-        for tp, outcome in zip(records, outcomes):
+        for tp, outcome in zip(records, outcomes, strict=False):
             new_income = eti.marginal_response(
                 taxpayer=tp,
                 marginal_rate=outcome.effective_marginal_rate,
@@ -173,6 +171,4 @@ class Simulator:
         # Deterministic column ordering
         cols = list(rows[0].keys())
         data: dict[str, list[float]] = {c: [r[c] for r in rows] for c in cols}
-        return pl.DataFrame(
-            {c: np.array(v, dtype=np.float64) for c, v in data.items()}
-        )
+        return pl.DataFrame({c: np.array(v, dtype=np.float64) for c, v in data.items()})

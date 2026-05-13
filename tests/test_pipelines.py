@@ -5,7 +5,6 @@ from __future__ import annotations
 import pytest
 
 from skatteprogressivitet.pipelines.runner import Pipeline, PipelineResult
-from skatteprogressivitet.config import Config
 
 
 @pytest.fixture
@@ -33,6 +32,7 @@ def test_pipeline_progressivity_finite(small_pop) -> None:
     pipe = Pipeline()
     result = pipe.run(taxpayers=small_pop, scenarios=[])
     import math
+
     for val in result.progressivity.values():
         assert math.isfinite(val)
 

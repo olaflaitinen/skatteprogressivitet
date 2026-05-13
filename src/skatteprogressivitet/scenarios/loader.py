@@ -6,11 +6,13 @@ validates them against the scenario schema.
 
 from __future__ import annotations
 
-import pathlib
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any
 
 import yaml
 from pydantic import BaseModel, Field
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 class ParameterOverride(BaseModel):
@@ -83,7 +85,7 @@ def load_scenario(
 
 
 def load_all_scenarios(
-    root: Optional[pathlib.Path] = None,
+    root: pathlib.Path | None = None,
 ) -> dict[str, Scenario]:
     """Load all scenario YAML files from the scenarios directory.
 

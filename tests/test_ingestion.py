@@ -8,12 +8,12 @@ import tempfile
 import polars as pl
 import pytest
 
-from skatteprogressivitet.ingestion.lisa import synthetic_lisa, read_lisa
+from skatteprogressivitet.ingestion.lisa import read_lisa, synthetic_lisa
+from skatteprogressivitet.ingestion.manifest import Manifest, load_manifest, validate_against_schema
 from skatteprogressivitet.ingestion.tax_registers import (
-    synthetic_tax_register,
     read_tax_register,
+    synthetic_tax_register,
 )
-from skatteprogressivitet.ingestion.manifest import load_manifest, validate_against_schema, Manifest
 
 
 def test_synthetic_lisa_returns_dataframe() -> None:
@@ -57,9 +57,13 @@ def test_read_tax_register_raises_if_missing() -> None:
 
 def test_load_manifest_from_yaml() -> None:
     import yaml
-    data = {"version": "1.0", "datasets": [
-        {"name": "lisa", "path": "data/synthetic/lisa_like.parquet"},
-    ]}
+
+    data = {
+        "version": "1.0",
+        "datasets": [
+            {"name": "lisa", "path": "data/synthetic/lisa_like.parquet"},
+        ],
+    }
     with tempfile.NamedTemporaryFile(suffix=".yaml", mode="w", delete=False) as f:
         yaml.dump(data, f)
         p = pathlib.Path(f.name)

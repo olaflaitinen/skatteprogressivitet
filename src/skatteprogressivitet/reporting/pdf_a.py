@@ -11,8 +11,10 @@ guarantee full conformance without validation.
 
 from __future__ import annotations
 
-import pathlib
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 def save_figure_pdf_a(
@@ -49,8 +51,8 @@ def save_figure_pdf_a(
         ...     p.exists()
         True
     """
-    from matplotlib.backends.backend_pdf import PdfPages
     import matplotlib
+    from matplotlib.backends.backend_pdf import PdfPages
 
     path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -66,5 +68,6 @@ def save_figure_pdf_a(
         pp.savefig(fig, bbox_inches="tight")
 
     import matplotlib.pyplot as plt
+
     plt.close(fig)
     return path
